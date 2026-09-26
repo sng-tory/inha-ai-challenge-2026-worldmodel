@@ -1,0 +1,1388 @@
+<title>대학원 트랙 아이디어 지도</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap">
+<style>
+  :root {
+    --paper:      #ecefe9;
+    --surface:    #f6f8f3;
+    --surface-2:  #e1e5db;
+    --ink:        #191d18;
+    --ink-2:      #495046;
+    --ink-3:      #6e766b;
+    --rule:       #c6ccc0;
+    --rule-soft:  #d8ddd2;
+    --accent:     #0d6e78;
+    --fam-dc:     #0d6e78;
+    --fam-wan:    #4a4b93;
+    --fam-cosmos: #9a5518;
+    --fam-svd:    #50722f;
+    --warn:       #a8341f;
+    --measure: 68ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #141713;
+      --surface:    #1c201b;
+      --surface-2:  #272c26;
+      --ink:        #e7ebe4;
+      --ink-2:      #b1b8ad;
+      --ink-3:      #858d81;
+      --rule:       #343a32;
+      --rule-soft:  #2a2f28;
+      --accent:     #4bb7c1;
+      --fam-dc:     #4bb7c1;
+      --fam-wan:    #9394dd;
+      --fam-cosmos: #d9945a;
+      --fam-svd:    #97bf68;
+      --warn:       #e57c63;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #141713;
+    --surface:    #1c201b;
+    --surface-2:  #272c26;
+    --ink:        #e7ebe4;
+    --ink-2:      #b1b8ad;
+    --ink-3:      #858d81;
+    --rule:       #343a32;
+    --rule-soft:  #2a2f28;
+    --accent:     #4bb7c1;
+    --fam-dc:     #4bb7c1;
+    --fam-wan:    #9394dd;
+    --fam-cosmos: #d9945a;
+    --fam-svd:    #97bf68;
+    --warn:       #e57c63;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans KR", "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 28px 96px; }
+  .prose { max-width: var(--measure); }
+
+  /* ---------- masthead ---------- */
+  .mast { border-bottom: 2px solid var(--ink); padding: 44px 0 22px; }
+  .mast .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: "IBM Plex Sans Condensed", "IBM Plex Sans KR", sans-serif;
+    font-weight: 700; font-size: clamp(34px, 5.4vw, 52px); line-height: 1.08;
+    letter-spacing: -.015em; margin: 0 0 16px; text-wrap: balance;
+  }
+  .mast .standfirst { max-width: 60ch; color: var(--ink-2); font-size: 16.5px; margin: 0 0 26px; }
+  .metarow {
+    display: flex; flex-wrap: wrap; gap: 0 34px;
+    border-top: 1px solid var(--rule-soft); padding-top: 14px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-3);
+  }
+  .metarow b { color: var(--ink-2); font-weight: 500; }
+
+  .toc { display: flex; flex-wrap: wrap; gap: 7px; margin: 18px 0 0; }
+  .toc a {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    border: 1px solid var(--rule); padding: 4px 10px;
+    text-decoration: none; color: var(--ink-2); white-space: nowrap;
+  }
+  .toc a:hover, .toc a:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- headings ---------- */
+  h2 {
+    font-family: "IBM Plex Sans Condensed", "IBM Plex Sans KR", sans-serif;
+    font-weight: 700; font-size: 27px; letter-spacing: -.01em;
+    margin: 0 0 10px; text-wrap: balance;
+  }
+  h3 {
+    font-family: "IBM Plex Sans Condensed", "IBM Plex Sans KR", sans-serif;
+    font-weight: 600; font-size: 18px; margin: 36px 0 8px;
+  }
+  .sec { margin-top: 74px; scroll-margin-top: 20px; }
+  .sec > .num {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--ink-3); display: block; margin-bottom: 8px;
+  }
+  p { margin: 0 0 14px; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  .lede { font-size: 16px; color: var(--ink-2); max-width: 62ch; }
+
+  /* ---------- findings ---------- */
+  .findings {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule); margin: 30px 0 34px;
+  }
+  .finding { background: var(--paper); padding: 22px 20px 24px; }
+  .finding .fn {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .16em; color: var(--accent);
+  }
+  .finding h3 {
+    margin: 10px 0 10px; font-size: 17.5px; line-height: 1.4; text-wrap: balance;
+  }
+  .finding p { font-size: 13.5px; color: var(--ink-2); margin: 0; line-height: 1.68; }
+
+  /* ---------- figures ---------- */
+  figure { margin: 30px 0; }
+  figure svg { display: block; width: 100%; height: auto; color: var(--ink-2); }
+  .figbox {
+    background: var(--surface); border: 1px solid var(--rule-soft);
+    padding: 20px 20px 12px; overflow-x: auto;
+  }
+  .figbox svg { min-width: 640px; }
+  figcaption {
+    font-size: 12.5px; color: var(--ink-3); line-height: 1.6;
+    margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule-soft);
+    max-width: 78ch;
+  }
+  figcaption b { color: var(--ink-2); font-weight: 500; }
+
+  /* ---------- team blocks ---------- */
+  .team { margin-top: 66px; padding-top: 26px; border-top: 1px solid var(--rule); scroll-margin-top: 20px; }
+  .team-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 2px; }
+  .fam {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .12em;
+    text-transform: uppercase; font-weight: 500;
+    border: 1px solid currentColor; padding: 2px 7px; white-space: nowrap;
+  }
+  .team-id { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-3); }
+  .thesis {
+    font-family: "IBM Plex Sans Condensed", "IBM Plex Sans KR", sans-serif;
+    font-size: 20px; font-weight: 600; line-height: 1.5;
+    border-left: 3px solid currentColor; padding-left: 16px;
+    margin: 16px 0 6px; max-width: 58ch; text-wrap: balance;
+  }
+
+  /* ---------- key rows ---------- */
+  .keys { list-style: none; padding: 0; margin: 22px 0 6px; max-width: 82ch; }
+  .keys li {
+    display: grid; grid-template-columns: 104px 1fr; gap: 16px;
+    padding: 11px 0; border-bottom: 1px solid var(--rule-soft); margin: 0;
+  }
+  .keys li:first-child { border-top: 1px solid var(--rule-soft); }
+  .keys .k {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-3); padding-top: 4px;
+  }
+  .keys .v { color: var(--ink-2); font-size: 14.2px; line-height: 1.68; }
+
+  /* ---------- spec grid ---------- */
+  .spec {
+    display: grid; grid-template-columns: 148px 1fr; gap: 0;
+    border-top: 1px solid var(--rule-soft); margin: 26px 0 4px; font-size: 13.5px;
+  }
+  .spec dt {
+    padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule-soft);
+    color: var(--ink-3); font-size: 12px; font-weight: 500;
+    font-family: "IBM Plex Mono", monospace; letter-spacing: .02em;
+  }
+  .spec dd {
+    margin: 0; padding: 9px 0; border-bottom: 1px solid var(--rule-soft);
+    color: var(--ink-2); line-height: 1.6;
+  }
+  .spec dd code, code {
+    font-family: "IBM Plex Mono", monospace; font-size: .89em;
+    background: var(--surface-2); padding: 1px 5px; color: var(--ink);
+  }
+  .num-val { font-variant-numeric: tabular-nums; }
+
+  /* ---------- notes ---------- */
+  .note {
+    border-left: 2px solid var(--warn); background: var(--surface);
+    padding: 12px 16px; margin: 20px 0; font-size: 13.5px; color: var(--ink-2);
+    max-width: 74ch;
+  }
+  .note b { color: var(--warn); font-weight: 600; }
+
+  /* ---------- table ---------- */
+  .tablewrap { overflow-x: auto; margin: 26px 0 10px; border: 1px solid var(--rule-soft); }
+  table { border-collapse: collapse; width: 100%; min-width: 880px; font-size: 13px; }
+  thead th {
+    text-align: left; padding: 10px 12px; background: var(--surface-2);
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--ink-2); font-weight: 500;
+    border-bottom: 1px solid var(--rule); white-space: nowrap;
+  }
+  tbody td { padding: 11px 12px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; color: var(--ink-2); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; }
+  td.n { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tnote { font-size: 12.5px; color: var(--ink-3); max-width: 76ch; }
+
+  ul.plain { margin: 0 0 14px; padding-left: 20px; }
+  ul.plain li { margin-bottom: 9px; }
+  ul.plain li::marker { color: var(--ink-3); }
+  strong { font-weight: 600; color: var(--ink); }
+  em { font-style: normal; box-shadow: inset 0 -0.42em 0 var(--surface-2); }
+
+  @media (max-width: 860px) { .findings { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 18px 72px; }
+    .spec, .keys li { grid-template-columns: 1fr; gap: 0; }
+    .spec dt { border-bottom: none; padding-bottom: 0; }
+    .spec dd { padding-top: 2px; }
+    .keys .k { padding-top: 0; }
+  }
+</style>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;color:var(--ink-2)">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+    <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">2026 인하 인공지능 챌린지 · 월드 모델 · 대학원 트랙</div>
+  <h1>대학원 트랙 아이디어 지도</h1>
+  <p class="standfirst">
+    첫 프레임 한 장과 16스텝짜리 로봇 관절 명령만으로 미래 영상을 만들어야 하는 과제.
+    8개 팀이 어떤 백본 위에서, 액션을 어떤 경로로 밀어 넣고, 무엇을 손실로 삼았는지를
+    그림으로 정리했다.
+  </p>
+  <div class="metarow">
+    <span><b>대상</b> grad/team1 – team10</span>
+    <span><b>제출 팀</b> 8팀 (team6 제출물 없음)</span>
+    <span><b>근거</b> 제출 README · config · 코드 · 검사보고서</span>
+    <span><b>정리일</b> 2026-09-07</span>
+  </div>
+  <nav class="toc">
+    <a href="#summary">요약</a>
+    <a href="#task">과제</a>
+    <a href="#map">백본 지형</a>
+    <a href="#conditioning">액션 주입</a>
+    <a href="#team10">team10</a>
+    <a href="#team7">team7</a>
+    <a href="#team3">team3</a>
+    <a href="#team1">team1</a>
+    <a href="#team5">team5</a>
+    <a href="#team4">team4</a>
+    <a href="#team8">team8</a>
+    <a href="#team2">team2</a>
+    <a href="#convergence">교차 관찰</a>
+  </nav>
+</header>
+
+<!-- ======================= 요약 ======================= -->
+<section class="sec" id="summary" style="margin-top: 46px">
+  <span class="num">요약</span>
+  <h2>먼저 알아야 할 세 가지</h2>
+
+  <div class="findings">
+    <div class="finding">
+      <div class="fn">01</div>
+      <h3>백본 선택이 곧 전략이었다</h3>
+      <p>
+        대회가 준 DynamiCrafter 1.4B로 버틴 3팀은 예산을 <strong>학습 스텝</strong>에 쏟았고,
+        외부 대형 모델(Wan·Cosmos·SVD)로 갈아탄 5팀은 백본을 얼린 채
+        <strong>LoRA·어댑터</strong>로만 액션을 가르쳤다.
+      </p>
+    </div>
+    <div class="finding">
+      <div class="fn">02</div>
+      <h3>모두가 “액션이 되읽히는지” 검사했다</h3>
+      <p>
+        지각손실(team7) · 잠재 IDM(team4) · 액션 판독기(team5) · 대조 힌지(team2) ·
+        모션 정합 손실(team10). 이름은 달라도 전부
+        <strong>“생성 결과에서 액션이 복원돼야 한다”</strong>는 같은 명제의 구현이다.
+      </p>
+    </div>
+    <div class="finding">
+      <div class="fn">03</div>
+      <h3>끝에서는 8팀 중 6팀이 같은 처방</h3>
+      <p>
+        움직이지 않아야 할 픽셀을 <strong>첫 프레임으로 되돌리는</strong> 후처리.
+        채점의 60%가 프레임 특징 거리라 배경 흔들림이 곧 감점이기 때문이다.
+        team10은 아예 43편을 정지영상으로 바꿨다.
+      </p>
+    </div>
+  </div>
+
+  <h3>한눈에 보는 8팀</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>팀</th><th>백본</th><th>액션 주입</th><th>핵심 아이디어</th><th>후처리</th><th>Public</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>team7</td><td>DynamiCrafter 1.4B</td><td>프레임 AdaGN</td>
+          <td>채점과 같은 특징공간(DINOv2·R3D)을 지각손실로 사용</td><td>없음</td><td class="n">0.157330</td>
+        </tr>
+        <tr>
+          <td>team5</td><td>Wan2.1-VACE-14B · TI2V-5B</td><td>골격 렌더 (구조 조건)</td>
+          <td>클릭 캘리브레이션 + 잠재 액션 판독 손실 + 구간 스태킹</td><td>f0 교체·배경 오프셋</td><td class="n">0.165847</td>
+        </tr>
+        <tr>
+          <td>team2</td><td>Ctrl-World (SVD)</td><td>cross-attn + 액션 헤드</td>
+          <td>액션 대조 힌지로 “조건 무시”를 직접 억제</td><td>frame-0 하드마스크</td><td class="n">0.165933</td>
+        </tr>
+        <tr>
+          <td>team10</td><td>DynamiCrafter 512</td><td>블록별 adaLN-Zero</td>
+          <td>모션 정합 손실 + 액션 임계로 정지 샘플 스위칭</td><td>정지영상 대체 43편</td><td class="n">0.172537</td>
+        </tr>
+        <tr>
+          <td>team8</td><td>Cosmos-Predict2.5-2B</td><td>사전학습 + xattn 어댑터</td>
+          <td>warped noise — 광류로 노이즈를 미리 뒤틀어 시간 일관성 확보</td><td>static_anchor_v1</td><td class="n">0.196397</td>
+        </tr>
+        <tr>
+          <td>team1</td><td>Wan2.2-TI2V-5B (동결)</td><td>AdaLN 84D + cross-attn</td>
+          <td>URDF 순기구학으로 관절각을 3D 팔 자세로 바꿔 투입</td><td>없음</td><td class="n">—</td>
+        </tr>
+        <tr>
+          <td>team3</td><td>DynamiCrafter 계열</td><td>12D + depth 채널 + 텍스트</td>
+          <td>예측기 초안 → 확산 정련의 2단 구조, VLM 캡션 조건</td><td>잔차 합성·모션 마스크</td><td class="n">—</td>
+        </tr>
+        <tr>
+          <td>team4</td><td>Cosmos-Predict2.5-2B</td><td>사전학습 + 6D embedder</td>
+          <td>잠재 역동역학(IDM) 보조 + 체크포인트 수프</td><td>배경 앵커 (45° 초과)</td><td class="n">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">
+    점수는 <strong>낮을수록 좋다.</strong> “—”는 제출 문서에 리더보드 점수가 적히지 않은 팀이다.
+    Private 점수는 team5(0.203079)만 기재돼 있어 팀 간 최종 성능 비교는 이 표로 할 수 없다 —
+    <strong>설계를 비교하기 위한 표</strong>다.
+  </p>
+</section>
+
+<!-- ======================= 1. 과제 ======================= -->
+<section class="sec" id="task">
+  <span class="num">01 — 과제와 채점</span>
+  <h2>왜 다들 “정지”에 집착했나</h2>
+  <div class="prose">
+    <p class="lede">
+      팀들의 선택을 이해하려면 채점식부터 봐야 한다. 점수는
+      <strong>낮을수록 좋은 거리값</strong>이고, 세 성분의 가중평균이다. 그중
+      <strong>Action 성분만 참가자가 스스로 계산할 수 있다.</strong>
+    </p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 900 250" role="img" aria-label="입력 이미지 한 장과 16x6 액션 시퀀스로 16프레임 영상을 만들고, 제출킷이 세 성분 특징을 뽑아 정답과의 거리로 0.3 DINO + 0.3 Video + 0.4 Action 점수를 계산하는 구조">
+        <g font-size="12" fill="currentColor">
+          <rect x="8" y="34" width="140" height="38" fill="var(--surface-2)" stroke="currentColor" stroke-width="1"/>
+          <text x="78" y="52" text-anchor="middle" font-size="12.5">첫 프레임 1장</text>
+          <text x="78" y="66" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">320 × 512 PNG</text>
+
+          <rect x="8" y="86" width="140" height="38" fill="var(--surface-2)" stroke="currentColor" stroke-width="1"/>
+          <text x="78" y="104" text-anchor="middle" font-size="12.5">액션 시퀀스</text>
+          <text x="78" y="118" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">(16, 6) SO-100 관절</text>
+
+          <line x1="150" y1="53" x2="196" y2="72" stroke="currentColor" stroke-width="1.2" marker-end="url(#ar)"/>
+          <line x1="150" y1="105" x2="196" y2="86" stroke="currentColor" stroke-width="1.2" marker-end="url(#ar)"/>
+
+          <rect x="200" y="52" width="150" height="54" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+          <text x="275" y="74" text-anchor="middle" font-size="13" fill="var(--accent)" font-weight="600">참가팀 모델</text>
+          <text x="275" y="92" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">216 샘플 · 1시간 이내</text>
+
+          <line x1="352" y1="79" x2="398" y2="79" stroke="currentColor" stroke-width="1.2" marker-end="url(#ar)"/>
+
+          <rect x="402" y="52" width="126" height="54" fill="var(--surface-2)" stroke="currentColor" stroke-width="1"/>
+          <text x="465" y="74" text-anchor="middle" font-size="12.5">16프레임 mp4</text>
+          <text x="465" y="92" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">216편</text>
+
+          <line x1="530" y1="79" x2="576" y2="79" stroke="currentColor" stroke-width="1.2" marker-end="url(#ar)"/>
+
+          <rect x="580" y="40" width="132" height="78" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="646" y="60" text-anchor="middle" font-size="12.5">submission_kit</text>
+          <text x="646" y="76" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">R3D-18 · DINOv2</text>
+          <text x="646" y="90" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">action_extractor</text>
+          <text x="646" y="108" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">무수정 실행 강제</text>
+
+          <line x1="714" y1="79" x2="756" y2="79" stroke="currentColor" stroke-width="1.2" marker-end="url(#ar)"/>
+
+          <rect x="760" y="40" width="132" height="78" fill="var(--surface-2)" stroke="currentColor" stroke-width="1"/>
+          <text x="826" y="60" text-anchor="middle" font-size="11.5">0.3 · DINO</text>
+          <text x="826" y="78" text-anchor="middle" font-size="11.5">0.3 · Video</text>
+          <text x="826" y="96" text-anchor="middle" font-size="11.5" fill="var(--warn)" font-weight="600">0.4 · Action</text>
+          <text x="826" y="112" text-anchor="middle" font-size="10" fill="var(--ink-3)">낮을수록 좋음</text>
+
+          <path d="M826,124 L826,168 L465,168 L465,112" fill="none" stroke="var(--warn)" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#ar)"/>
+          <text x="646" y="184" text-anchor="middle" font-size="11.5" fill="var(--warn)">Action 성분만 eval 정답과 직접 비교돼 CSV에 기록 → 참가자가 자기 점수를 안다</text>
+
+          <line x1="8" y1="212" x2="892" y2="212" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+          <text x="8" y="232" font-size="11" fill="var(--ink-3)">학습 4일 · 추론 1시간 · RTX PRO 6000 96GB 1대 · 제공 데이터만 사용 · 킷은 CSV 변환에만</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>
+      <b>그림 1.</b> 채점 경로. 여기서 두 가지가 따라 나온다 — ① DINO·Video가 합쳐서 <b>0.6</b>이고 둘 다
+      프레임 특징의 코사인 거리라, <b>배경이 미세하게 흔들리면 그대로 감점</b>이다(→ 모든 팀의 정지 처방).
+      ② Action 성분은 킷이 eval 정답과의 MAE를 CSV에 적어 주므로 <b>혼자서 채점해 볼 수 있다</b>(→ 여러 팀의 규정 쟁점).
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ======================= 2. 지형 ======================= -->
+<section class="sec" id="map">
+  <span class="num">02 — 첫 갈림길</span>
+  <h2>어느 백본을 믿을 것인가</h2>
+  <div class="prose">
+    <p>
+      8팀의 차이는 대부분 이 하나의 선택에서 갈라진다. 대회가 준
+      <strong>DynamiCrafter 1.4B를 깊게 팔 것인가</strong>, 아니면
+      <strong>훨씬 큰 외부 사전학습 영상모델로 갈아탈 것인가</strong>.
+      전자는 4일 예산을 학습 스텝에 몰아넣을 수 있고, 후자는 사전학습된 영상 품질을 그대로 가져오는 대신
+      액션은 어댑터·LoRA로만 가르쳐야 한다.
+    </p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 900 330" role="img" aria-label="8개 팀을 백본 계열 네 갈래로 나눈 지도. DynamiCrafter 계열 team3·7·10, Wan 계열 team1·5, Cosmos 계열 team4·8, SVD 기반 Ctrl-World 계열 team2">
+        <g font-size="12" fill="currentColor">
+          <text x="8" y="16" font-size="10.5" fill="var(--ink-3)" letter-spacing="1.4">사전학습 출발점</text>
+          <text x="470" y="16" font-size="10.5" fill="var(--ink-3)" letter-spacing="1.4">팀 · 액션을 밀어 넣은 방식</text>
+          <line x1="8" y1="24" x2="892" y2="24" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+
+          <rect x="8" y="38" width="196" height="66" fill="none" stroke="var(--fam-dc)" stroke-width="1.6"/>
+          <text x="20" y="60" font-size="13.5" fill="var(--fam-dc)" font-weight="600">DynamiCrafter 512</text>
+          <text x="20" y="77" font-size="10.5" fill="var(--ink-3)">1.4B · 대회 제공 backbone</text>
+          <text x="20" y="93" font-size="10.5" fill="var(--ink-3)">3팀 — 예산을 스텝에 투자</text>
+
+          <line x1="206" y1="71" x2="446" y2="56" stroke="var(--fam-dc)" stroke-width="1"/>
+          <line x1="206" y1="71" x2="446" y2="80" stroke="var(--fam-dc)" stroke-width="1"/>
+          <line x1="206" y1="71" x2="446" y2="104" stroke="var(--fam-dc)" stroke-width="1"/>
+          <text x="452" y="60" font-size="12.5"><tspan font-weight="600">team10</tspan> · 블록별 adaLN-Zero + 모션 정합 손실</text>
+          <text x="452" y="84" font-size="12.5"><tspan font-weight="600">team7</tspan> · 프레임 AdaGN + 채점 특징 지각손실</text>
+          <text x="452" y="108" font-size="12.5"><tspan font-weight="600">team3</tspan> · 예측기 + 확산 2단, VLM 캡션 조건</text>
+
+          <rect x="8" y="122" width="196" height="66" fill="none" stroke="var(--fam-wan)" stroke-width="1.6"/>
+          <text x="20" y="144" font-size="13.5" fill="var(--fam-wan)" font-weight="600">Wan 2.1 / 2.2</text>
+          <text x="20" y="161" font-size="10.5" fill="var(--ink-3)">TI2V-5B · VACE-14B</text>
+          <text x="20" y="177" font-size="10.5" fill="var(--ink-3)">2팀 — 기하 사전지식 주입</text>
+
+          <line x1="206" y1="155" x2="446" y2="140" stroke="var(--fam-wan)" stroke-width="1"/>
+          <line x1="206" y1="155" x2="446" y2="164" stroke="var(--fam-wan)" stroke-width="1"/>
+          <text x="452" y="144" font-size="12.5"><tspan font-weight="600">team1</tspan> · URDF 순기구학 특징 + LoRA r16</text>
+          <text x="452" y="168" font-size="12.5"><tspan font-weight="600">team5</tspan> · 클릭 캘리브레이션 골격 렌더 조건</text>
+
+          <rect x="8" y="206" width="196" height="66" fill="none" stroke="var(--fam-cosmos)" stroke-width="1.6"/>
+          <text x="20" y="228" font-size="13.5" fill="var(--fam-cosmos)" font-weight="600">Cosmos-Predict2.5</text>
+          <text x="20" y="245" font-size="10.5" fill="var(--ink-3)">2B · 이미 action-conditioned</text>
+          <text x="20" y="261" font-size="10.5" fill="var(--ink-3)">2팀 — 액션 조건은 물려받음</text>
+
+          <line x1="206" y1="239" x2="446" y2="224" stroke="var(--fam-cosmos)" stroke-width="1"/>
+          <line x1="206" y1="239" x2="446" y2="248" stroke="var(--fam-cosmos)" stroke-width="1"/>
+          <text x="452" y="228" font-size="12.5"><tspan font-weight="600">team4</tspan> · 잠재 역동역학(IDM) 보조 + 체크포인트 수프</text>
+          <text x="452" y="252" font-size="12.5"><tspan font-weight="600">team8</tspan> · warped noise + 액션 cross-attn 어댑터</text>
+
+          <rect x="8" y="290" width="196" height="34" fill="none" stroke="var(--fam-svd)" stroke-width="1.6"/>
+          <text x="20" y="312" font-size="13.5" fill="var(--fam-svd)" font-weight="600">SVD · Ctrl-World</text>
+
+          <line x1="206" y1="307" x2="446" y2="307" stroke="var(--fam-svd)" stroke-width="1"/>
+          <text x="452" y="311" font-size="12.5"><tspan font-weight="600">team2</tspan> · 액션 대조학습(hinge)으로 조건 감도 강제</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>
+      <b>그림 2.</b> Cosmos 계열 두 팀만 “이미 액션 조건이 붙은” 모델에서 출발했다.
+      나머지 여섯 팀은 액션 입력 경로를 <b>직접 만들어 붙여야</b> 했고, 그 설계가 팀별 최대 차별점이다(그림 3).
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ======================= 3. 조건 주입 ======================= -->
+<section class="sec" id="conditioning">
+  <span class="num">03 — 두 번째 갈림길</span>
+  <h2>액션 6차원을 영상으로 흘려보내는 네 가지 통로</h2>
+  <div class="prose">
+    <p>
+      입력은 <code>(16, 6)</code> 관절 명령 하나뿐이다. 이 작은 텐서가 UNet/DiT 안쪽 어디에 닿게 하느냐가
+      네 갈래로 갈렸다. 여러 통로를 함께 쓴 팀도 있다.
+    </p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 900 300" role="img" aria-label="액션을 주입하는 네 가지 경로 비교: 정규화 변조 AdaLN·AdaGN, 크로스 어텐션, 입력 채널 연결, 텍스트 토큰 우회">
+        <g font-size="12" fill="currentColor">
+          <rect x="8" y="126" width="104" height="44" fill="var(--surface-2)" stroke="currentColor"/>
+          <text x="60" y="146" text-anchor="middle" font-size="12">액션 임베딩</text>
+          <text x="60" y="161" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">(16, 6) → h</text>
+
+          <path d="M114,140 L150,52" fill="none" stroke="currentColor" stroke-width="1.1" marker-end="url(#ar2)"/>
+          <rect x="154" y="24" width="240" height="54" fill="none" stroke="currentColor"/>
+          <text x="166" y="44" font-size="12.5" font-weight="600">① 정규화 변조 — AdaLN / AdaGN</text>
+          <text x="166" y="62" font-size="11" fill="var(--ink-3)">h = h·(1+γ) + β · 마지막 층 zero-init</text>
+          <text x="410" y="44" font-size="11.5" fill="var(--fam-dc)">team10 (블록 25곳)</text>
+          <text x="410" y="61" font-size="11.5" fill="var(--fam-dc)">team7 (프레임 단위 1경로)</text>
+
+          <path d="M114,146 L150,110" fill="none" stroke="currentColor" stroke-width="1.1" marker-end="url(#ar2)"/>
+          <rect x="154" y="86" width="240" height="54" fill="none" stroke="currentColor"/>
+          <text x="166" y="106" font-size="12.5" font-weight="600">② 크로스 어텐션 · 어댑터</text>
+          <text x="166" y="124" font-size="11" fill="var(--ink-3)">액션 토큰을 K·V 로 주입 + LoRA</text>
+          <text x="410" y="106" font-size="11.5" fill="var(--fam-wan)">team1</text>
+          <text x="410" y="123" font-size="11.5" fill="var(--fam-cosmos)">team8</text>
+          <text x="470" y="106" font-size="11.5" fill="var(--fam-svd)">team2</text>
+          <text x="470" y="123" font-size="11.5" fill="var(--fam-cosmos)">team4</text>
+
+          <path d="M114,156 L150,172" fill="none" stroke="currentColor" stroke-width="1.1" marker-end="url(#ar2)"/>
+          <rect x="154" y="148" width="240" height="54" fill="none" stroke="currentColor"/>
+          <text x="166" y="168" font-size="12.5" font-weight="600">③ 입력 채널 확장 · 구조 조건</text>
+          <text x="166" y="186" font-size="11" fill="var(--ink-3)">깊이·골격 맵을 latent 옆에 붙임</text>
+          <text x="410" y="168" font-size="11.5" fill="var(--fam-dc)">team3 (depth 채널)</text>
+          <text x="410" y="185" font-size="11.5" fill="var(--fam-wan)">team5 (VACE 골격)</text>
+
+          <path d="M114,162 L150,234" fill="none" stroke="currentColor" stroke-width="1.1" marker-end="url(#ar2)"/>
+          <rect x="154" y="210" width="240" height="54" fill="none" stroke="currentColor"/>
+          <text x="166" y="230" font-size="12.5" font-weight="600">④ 텍스트 토큰 우회</text>
+          <text x="166" y="248" font-size="11" fill="var(--ink-3)">액션 → 자연어 구절 → CLIP 조건</text>
+          <text x="410" y="230" font-size="11.5" fill="var(--fam-dc)">team3</text>
+          <text x="410" y="247" font-size="10.5" fill="var(--ink-3)">“slight quick, gripper closes”</text>
+
+          <line x1="600" y1="24" x2="600" y2="264" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+          <text x="618" y="42" font-size="11.5" fill="var(--ink-3)">얻는 것</text>
+          <text x="618" y="62" font-size="11.5">전 블록에 고르게 작용, 기존 가중치 보존</text>
+          <text x="618" y="106" font-size="11.5" fill="var(--ink-3)">얻는 것</text>
+          <text x="618" y="126" font-size="11.5">시점별 세밀한 대응, 파라미터 비용 큼</text>
+          <text x="618" y="168" font-size="11.5" fill="var(--ink-3)">얻는 것</text>
+          <text x="618" y="188" font-size="11.5">공간 배치를 직접 지정, 캘리브레이션 필요</text>
+          <text x="618" y="230" font-size="11.5" fill="var(--ink-3)">얻는 것</text>
+          <text x="618" y="250" font-size="11.5">사전학습 텍스트 경로 재사용, 해상도 거침</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>
+      <b>그림 3.</b> ①은 zero-init 덕에 “붙여도 처음엔 결과가 안 바뀌는” 안전한 출발점을 주므로 대회 백본을 고친 팀들이 택했고,
+      ②는 대형 사전학습 모델을 얼린 채 붙이기 좋아 외부 백본 팀이 택했다.
+      ③은 팔의 <em>위치</em>를 픽셀 공간에서 지정하는 유일한 방식이라 캘리브레이션 작업이 따라붙는다.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ======================= 4. 팀별 ======================= -->
+<section class="sec" id="teams">
+  <span class="num">04 — 팀별 분석</span>
+  <h2>여덟 개의 답안</h2>
+  <div class="prose">
+    <p>
+      백본 계열 순서로 본다. 각 팀은 <strong>한 줄 아이디어 → 세 줄 요점 → 파이프라인 그림 → 상세 제원</strong>
+      순서로 같은 틀을 쓴다. 그림은 위가 학습, 아래가 추론이다.
+    </p>
+  </div>
+
+  <!-- ---------- team10 ---------- -->
+  <article class="team" id="team10" style="color: var(--fam-dc)">
+    <div class="team-head">
+      <span class="fam">DynamiCrafter</span>
+      <h2 style="color: var(--ink)">team10 · 인공지능융합</h2>
+      <span class="team-id">Public 0.172537</span>
+    </div>
+    <p class="thesis" style="color: var(--ink)">
+      대회 백본을 3파일 · 72줄만 고쳐서, 액션이 UNet의 <em>모든 블록 경계</em>에서 말하게 만들었다.
+    </p>
+    <ul class="keys">
+      <li><span class="k">무엇을</span><span class="v">
+        UNet 25개 블록마다 액션 임베딩에서 scale/shift를 만들어 <code>h = h·(1+γ) + β</code>를 적용하는
+        <strong>adaLN-Zero 변조</strong>. 마지막 linear를 0으로 초기화해 <strong>붙인 직후의 forward는 원본과 완전히 동일</strong>하다.
+      </span></li>
+      <li><span class="k">왜 통했나</span><span class="v">
+        “지시가 정지면 영상도 정지해야 한다”를 <strong>학습·추론 양쪽에서 이중으로</strong> 강제했다.
+        학습에서는 모션 정합 손실 2종(액션 travel 프로파일과의 상관 / GT 프레임차와의 L1),
+        추론에서는 액션 travel이 임계 τ 미만인 샘플을 정지영상으로 대체(216 중 43편).
+      </span></li>
+      <li><span class="k">남은 문제</span><span class="v">
+        2026-08-13 클라우드 인스턴스 회수로 <strong>학습 로그가 유실</strong>됐고, 모션 손실 v2 코드는 사양 기록에 따라 재작성한 것이다.
+        제출 체크포인트로 CSV를 재현하는 경로에는 영향이 없다.
+      </span></li>
+    </ul>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 900 196" role="img" aria-label="team10 파이프라인: DynamiCrafter 백본에서 stage1 액션 조건화, 병합, stage2 adaLN 학습을 거쳐 최종 체크포인트를 만들고, 추론에서 DDIM 50스텝 생성 후 액션 travel 임계로 43개를 정지영상 대체">
+          <g font-size="11.5" fill="currentColor">
+            <text x="8" y="14" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">학습</text>
+            <rect x="8" y="24" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="72" y="42" text-anchor="middle">DynamiCrafter 512</text>
+            <text x="72" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">공개 사전학습</text>
+            <line x1="138" y1="44" x2="182" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <text x="160" y="36" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">66h</text>
+            <rect x="186" y="24" width="128" height="40" fill="none" stroke="currentColor"/>
+            <text x="250" y="42" text-anchor="middle">stage1 · 액션 조건</text>
+            <text x="250" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">lr 1e-5</text>
+            <line x1="316" y1="44" x2="360" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <text x="338" y="36" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">merge</text>
+            <rect x="364" y="24" width="150" height="40" fill="none" stroke="var(--fam-dc)" stroke-width="1.6"/>
+            <text x="439" y="42" text-anchor="middle" fill="var(--fam-dc)" font-weight="600">stage2 · adaLN-Zero</text>
+            <text x="439" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">lr 5e-6 · 모션손실 v1+v2</text>
+            <line x1="516" y1="44" x2="560" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="564" y="24" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="628" y="42" text-anchor="middle">track2_final.ckpt</text>
+            <text x="628" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">11.9 GB · step 4,080</text>
+
+            <line x1="8" y1="84" x2="892" y2="84" stroke="currentColor" opacity="0.25"/>
+
+            <text x="8" y="106" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">추론</text>
+            <rect x="8" y="116" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="72" y="134" text-anchor="middle">첫 프레임 + 액션</text>
+            <text x="72" y="148" text-anchor="middle" font-size="10" fill="var(--ink-3)">216 샘플</text>
+            <line x1="138" y1="136" x2="182" y2="136" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="186" y="116" width="150" height="40" fill="none" stroke="currentColor"/>
+            <text x="261" y="134" text-anchor="middle">DDIM 50 · η=1.0</text>
+            <text x="261" y="148" text-anchor="middle" font-size="10" fill="var(--ink-3)">rescale 0.7 · seed 0 · 54분</text>
+            <line x1="338" y1="136" x2="382" y2="136" stroke="currentColor" marker-end="url(#ar)"/>
+
+            <rect x="386" y="104" width="176" height="64" fill="none" stroke="var(--warn)" stroke-width="1.4"/>
+            <text x="474" y="122" text-anchor="middle" fill="var(--warn)" font-weight="600">액션 travel 임계 τ</text>
+            <text x="474" y="138" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">G1 τ=15 · G2 τ=22</text>
+            <text x="474" y="154" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">입력 액션만 사용</text>
+
+            <path d="M564,124 L606,124" stroke="currentColor" marker-end="url(#ar)"/>
+            <text x="612" y="128" font-size="11">움직임 있음 → 생성 영상 <tspan font-weight="600">173편</tspan></text>
+            <path d="M564,150 L606,150" stroke="var(--warn)" marker-end="url(#ar)"/>
+            <text x="612" y="154" font-size="11" fill="var(--warn)">정지 판정 → 첫 프레임 16반복 <tspan font-weight="600">43편</tspan></text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>그림 4.</b> team10 — 216편 중 43편은 모델이 만든 영상을 아예 쓰지 않는다.</figcaption>
+    </figure>
+
+    <dl class="spec">
+      <dt>백본</dt><dd>DynamiCrafter 512 (challenge_kit 구현) · 액션 절대각 6차원</dd>
+      <dt>학습</dt><dd class="num-val">stage1 66h → merge → stage2 lr 5e-6, batch 2×accum 4, 최대 28,000 step / 19h · 단일 RTX PRO 6000</dd>
+      <dt>보조 손실</dt><dd>모션 정합 v1 <code>0.05</code>(액션 travel 상관) · v2 <code>0.2</code>(GT 프레임차 L1, scale-aware)</dd>
+      <dt>추론</dt><dd class="num-val">DDIM 50 step, η 1.0, guidance_rescale 0.7, uniform_trailing, batch 1, seed 0 — 약 56분</dd>
+      <dt>변경 규모</dt><dd>원본 kit 대비 3개 파일 <code>+72 / −2</code> 라인 · adaLN 모듈 약 55M</dd>
+    </dl>
+  </article>
+
+  <!-- ---------- team7 ---------- -->
+  <article class="team" id="team7" style="color: var(--fam-dc)">
+    <div class="team-head">
+      <span class="fam">DynamiCrafter</span>
+      <h2 style="color: var(--ink)">team7 · FriendRobot</h2>
+      <span class="team-id">Public 0.157330</span>
+    </div>
+    <p class="thesis" style="color: var(--ink)">
+      채점이 DINOv2와 R3D로 잰다면, 학습 손실도 그 특징 공간에서 재면 된다.
+    </p>
+    <ul class="keys">
+      <li><span class="k">무엇을</span><span class="v">
+        조건 주입은 가장 단순하다 — 액션 12차원(절대 6 + 델타 6)을 <strong>프레임 단위 AdaGN 경로 하나</strong>로만.
+        대신 1단계에 80,000 step을 쏟고, 2단계 5,000 step에서 <strong>지각손실</strong>을 건다.
+        감독 특징이 <code>DINOv2 dense 패치토큰 + r3d_18</code> — <strong>채점의 두 성분과 같은 계열</strong>이다.
+      </span></li>
+      <li><span class="k">왜 통했나</span><span class="v">
+        지표를 향해 좌표를 직접 튜닝했다. README에 CLS 토큰 대신 dense 패치를 쓴 이유,
+        lam·t_gate·n_frames의 각 대안이 점수를 얼마나 악화시키는지가 표로 다 적혀 있다.
+        추론도 <strong>DDIM 17 step</strong>으로 끊어 점수 −0.004를 내주고 시간을 1/3로 줄였다.
+      </span></li>
+      <li><span class="k">남은 문제</span><span class="v">
+        체크포인트 10개 중 하나를 고르는 데 쓴 <strong>자체 채점기 <code>local_scorer.py</code>가 제출물에 없다.</strong>
+        “왜 80k를 골랐는가”를 확인할 수 없어 검사보고서가 최중대 사안으로 지목했다.
+      </span></li>
+    </ul>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 900 196" role="img" aria-label="team7 파이프라인: DynamiCrafter 백본에 AdaGN 액션조건 80k 스텝 학습 후 DINOv2와 R3D 지각손실로 5k 스텝 파인튜닝, 추론은 DDIM 17스텝에 액션 CFG 2.0">
+          <g font-size="11.5" fill="currentColor">
+            <text x="8" y="14" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">학습</text>
+            <rect x="8" y="24" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="72" y="42" text-anchor="middle">DynamiCrafter 512</text>
+            <text x="72" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">1.4B</text>
+            <line x1="138" y1="44" x2="182" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="186" y="24" width="160" height="40" fill="none" stroke="currentColor"/>
+            <text x="266" y="42" text-anchor="middle">1단계 · AdaGN 액션</text>
+            <text x="266" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">80,000 step · 12D(절대+델타)</text>
+            <line x1="348" y1="44" x2="392" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <text x="370" y="36" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">10개 후보</text>
+            <rect x="396" y="24" width="176" height="40" fill="none" stroke="var(--fam-dc)" stroke-width="1.6"/>
+            <text x="484" y="42" text-anchor="middle" fill="var(--fam-dc)" font-weight="600">2단계 · 지각손실 FT</text>
+            <text x="484" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">DINOv2 dense + r3d_18 · 5,000 step</text>
+            <line x1="574" y1="44" x2="618" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="622" y="24" width="130" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="687" y="42" text-anchor="middle">final_dense5k.ckpt</text>
+            <text x="687" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">EMA 가중치</text>
+
+            <rect x="768" y="18" width="124" height="52" fill="none" stroke="var(--warn)" stroke-dasharray="4 3"/>
+            <text x="830" y="36" text-anchor="middle" font-size="10.5" fill="var(--warn)">local_scorer</text>
+            <text x="830" y="50" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">체크포인트 선택에 사용</text>
+            <text x="830" y="63" text-anchor="middle" font-size="9.5" fill="var(--warn)">제출물에 없음</text>
+
+            <line x1="8" y1="88" x2="892" y2="88" stroke="currentColor" opacity="0.25"/>
+
+            <text x="8" y="110" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">추론</text>
+            <rect x="8" y="120" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="72" y="138" text-anchor="middle">첫 프레임 + 액션</text>
+            <text x="72" y="152" text-anchor="middle" font-size="10" fill="var(--ink-3)">샘플별 (seed, id)</text>
+            <line x1="138" y1="140" x2="182" y2="140" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="186" y="120" width="186" height="40" fill="none" stroke="currentColor"/>
+            <text x="279" y="138" text-anchor="middle">DDIM 17 step · uniform_trailing</text>
+            <text x="279" y="152" text-anchor="middle" font-size="10" fill="var(--ink-3)">액션 CFG 2.0 전 구간</text>
+            <line x1="374" y1="140" x2="418" y2="140" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="422" y="120" width="130" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="487" y="138" text-anchor="middle">216 mp4</text>
+            <text x="487" y="152" text-anchor="middle" font-size="10" fill="var(--ink-3)">후처리 없음</text>
+            <line x1="554" y1="140" x2="598" y2="140" stroke="currentColor" marker-end="url(#ar)"/>
+            <text x="606" y="136" font-size="11">공식 킷 그대로 → CSV</text>
+            <text x="606" y="152" font-size="10.5" fill="var(--ink-3)">재현 실측 35분 · 26.7 GiB</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>그림 5.</b> team7 — 후처리 없이 모델 출력을 그대로 낸 두 팀 중 하나. 대신 체크포인트 선택 도구가 빠져 있다.</figcaption>
+    </figure>
+
+    <dl class="spec">
+      <dt>백본</dt><dd>DynamiCrafter_512 1.4B (공식 backbone.ckpt, Apache-2.0)</dd>
+      <dt>1단계</dt><dd class="num-val">80,000 step · lr 1e-5 · accum 2 · frame stride 24 · action_dropout 0.1</dd>
+      <dt>2단계</dt><dd class="num-val">5,000 step · lr 5e-6 · 8bit AdamW · 지각손실 lam 0.05 / t_gate 0.6 / n_frames 2 · A6000 약 6.5h</dd>
+      <dt>추론</dt><dd class="num-val">DDIM 17 step · action CFG 2.0 · EMA · 재현 35분 / 26.7 GiB</dd>
+      <dt>데이터</dt><dd>체스판 계열 6개 데이터셋 블록리스트 제외</dd>
+    </dl>
+  </article>
+
+  <!-- ---------- team3 ---------- -->
+  <article class="team" id="team3" style="color: var(--fam-dc)">
+    <div class="team-head">
+      <span class="fam">DynamiCrafter</span>
+      <h2 style="color: var(--ink)">team3 · SSL</h2>
+      <span class="team-id">Public —</span>
+    </div>
+    <p class="thesis" style="color: var(--ink)">
+      먼저 한 번에 예측하고, 확산은 그 예측 위를 다듬는 데만 쓴다.
+    </p>
+    <ul class="keys">
+      <li><span class="k">무엇을</span><span class="v">
+        유일하게 <strong>모델을 둘로 나눴다</strong>. 1-pass 잠재 예측기 <code>P</code>가 액션에 맞는 latent 궤적 초안을
+        한 번에 뽑고, v-확산 <code>D</code>가 <code>strength 0.65</code> img2img로 그 위를 다듬는다.
+      </span></li>
+      <li><span class="k">왜 통했나</span><span class="v">
+        확산에게 “무에서 만들라”가 아니라 <strong>“이 초안을 고쳐라”</strong>를 시키므로 25 step만으로도 궤적이 무너지지 않는다.
+        조건도 가장 다층적이다 — 액션 12D + depth 채널 + <strong>Qwen2.5-VL-7B 캡션에서 뽑은 태스크 토큰</strong>
+        + 액션 통계를 자연어로 옮긴 구절(<code>“Motion: slight quick, gripper closes.”</code>).
+      </span></li>
+      <li><span class="k">남은 문제</span><span class="v">
+        태스크 토큰을 만들 때 <strong>eval 캡션 216개까지 통계 모집단에 포함</strong>했다(transductive).
+        검사보고서는 이를 Violation으로 지적했고, 학습 4개 실행의 world_size 합산도 예산 초과 정황으로 봤다.
+      </span></li>
+    </ul>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 900 210" role="img" aria-label="team3 파이프라인: VLM 캡션과 태스크 토큰 생성, 잠재 예측기 P 학습, v-확산 D 학습을 거쳐 추론에서 P의 초안을 D가 strength 0.65로 다듬고 잔차 합성과 모션 마스크로 최종 영상을 만든다">
+          <g font-size="11.5" fill="currentColor">
+            <text x="8" y="14" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">학습</text>
+            <rect x="8" y="24" width="150" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="83" y="42" text-anchor="middle">Qwen2.5-VL-7B</text>
+            <text x="83" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">프레임 캡션 → 태스크 토큰</text>
+            <line x1="160" y1="44" x2="204" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="208" y="24" width="150" height="40" fill="none" stroke="currentColor"/>
+            <text x="283" y="42" text-anchor="middle">예측기 P (1-pass)</text>
+            <text x="283" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">step 14,000 · motion-weight 4</text>
+            <line x1="360" y1="44" x2="404" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="408" y="24" width="160" height="40" fill="none" stroke="var(--fam-dc)" stroke-width="1.6"/>
+            <text x="488" y="42" text-anchor="middle" fill="var(--fam-dc)" font-weight="600">v-확산 D</text>
+            <text x="488" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">action 12D + depth 채널 + 캡션</text>
+            <line x1="570" y1="44" x2="614" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="618" y="24" width="150" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="693" y="42" text-anchor="middle" font-size="11">predictor + diffusion .ckpt</text>
+            <text x="693" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">UNet 만 저장</text>
+
+            <line x1="8" y1="84" x2="892" y2="84" stroke="currentColor" opacity="0.25"/>
+
+            <text x="8" y="106" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">추론</text>
+            <rect x="8" y="116" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="72" y="134" text-anchor="middle">첫 프레임 + 액션</text>
+            <text x="72" y="148" text-anchor="middle" font-size="10" fill="var(--ink-3)">+ eval 캡션</text>
+            <line x1="138" y1="136" x2="182" y2="136" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="186" y="116" width="120" height="40" fill="none" stroke="currentColor"/>
+            <text x="246" y="134" text-anchor="middle">P 로 초안 생성</text>
+            <text x="246" y="148" text-anchor="middle" font-size="10" fill="var(--ink-3)">--init-predictor</text>
+            <line x1="308" y1="136" x2="352" y2="136" stroke="currentColor" marker-end="url(#ar)"/>
+            <text x="330" y="128" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">0.65</text>
+            <rect x="356" y="116" width="150" height="40" fill="none" stroke="currentColor"/>
+            <text x="431" y="134" text-anchor="middle">D 로 다듬기</text>
+            <text x="431" y="148" text-anchor="middle" font-size="10" fill="var(--ink-3)">DDIM 25 · η 0.5 · CFG 1.5</text>
+            <line x1="508" y1="136" x2="552" y2="136" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="556" y="104" width="172" height="64" fill="none" stroke="var(--warn)" stroke-width="1.4"/>
+            <text x="642" y="122" text-anchor="middle" fill="var(--warn)" font-weight="600">잔차 합성 · 모션 마스크</text>
+            <text x="642" y="138" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">blend 1.20 · 마스크 0.55–0.9</text>
+            <text x="642" y="154" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">per-frame · blur 4</text>
+            <line x1="730" y1="136" x2="774" y2="136" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="778" y="116" width="114" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="835" y="140" text-anchor="middle">216 mp4</text>
+
+            <text x="8" y="196" font-size="10.5" fill="var(--warn)">쟁점 — eval 캡션 216개까지 포함해 IDF 통계를 낸 뒤 태스크 토큰을 분류(transductive)</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>그림 6.</b> team3 — 확산 앞단에 결정론적 예측기를 둔 “초안 → 정련” 구조는 이 팀뿐이다.</figcaption>
+    </figure>
+
+    <dl class="spec">
+      <dt>백본</dt><dd>DynamiCrafter 계열 LatentVisualDiffusion · <code>action_dims 12</code> · image_proj 학습</dd>
+      <dt>구성 모델</dt><dd>예측기 P (<code>predictor.ckpt</code>) + v-확산 D (<code>diffusion.ckpt</code>) 2개</dd>
+      <dt>보조 조건</dt><dd>VLM 캡션 · 태스크 토큰 · 액션→자연어 모션 구절 · depth 채널</dd>
+      <dt>추론</dt><dd class="num-val">strength 0.65 · DDIM 25 · η 0.5 · CFG 1.5 · negative “static” · residual blend 1.20</dd>
+      <dt>합성 제어</dt><dd>per-frame 모션 마스크 · 저역 성분 이식(<code>lowpass_concat</code>) · 공간·시간 언샤프</dd>
+    </dl>
+  </article>
+
+  <!-- ---------- team1 ---------- -->
+  <article class="team" id="team1" style="color: var(--fam-wan)">
+    <div class="team-head">
+      <span class="fam">Wan 2.2</span>
+      <h2 style="color: var(--ink)">team1 · BSL</h2>
+      <span class="team-id">Public —</span>
+    </div>
+    <p class="thesis" style="color: var(--ink)">
+      관절 각도 6개를 그대로 주지 말고, 순기구학으로 <em>3D 공간의 팔 자세</em>로 바꿔서 주자.
+    </p>
+    <ul class="keys">
+      <li><span class="k">무엇을</span><span class="v">
+        SO-ARM100 공개 URDF에서 관절 위치·회전축·가동범위를 뽑아 상수로 박고,
+        <strong>순기구학 <code>fk()</code>로 관절각을 3D 팔 자세로 변환</strong>해 ΔFK와 집게 특징을 조건으로 넣는다.
+        AdaLN 84차원 + cross-attention 57열이 전부 이 기하 특징에서 나온다.
+      </span></li>
+      <li><span class="k">왜 통했나</span><span class="v">
+        모델이 “관절각 → 화면상 팔 위치”라는 어려운 매핑을 처음부터 배울 필요가 없다.
+        덕분에 백본(Wan2.2-TI2V-5B)은 통째로 얼리고 학습 대상이 <strong>71.44M</strong>뿐이며,
+        예산도 가장 가볍다 — 학습 36h(한도의 37.5%), 추론 16.8분(한도의 28%).
+      </span></li>
+      <li><span class="k">남은 문제</span><span class="v">
+        URDF는 <strong>주최가 제공하지 않은 외부 자료</strong>다. 실행 중 다운로드는 없고 출처·해시도 명기했지만,
+        “제공 데이터만 사용” 규정이 데이터셋만 제한하는지 모든 외부 자료를 제한하는지에 판정이 걸린다.
+      </span></li>
+    </ul>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 900 210" role="img" aria-label="team1 파이프라인: URDF 상수에서 순기구학을 계산해 장면 선별과 조건 특징을 만들고, 얼린 Wan2.2 백본에 어댑터와 LoRA만 학습한 뒤 후처리 없이 추론">
+          <g font-size="11.5" fill="currentColor">
+            <text x="8" y="14" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">학습</text>
+            <rect x="8" y="24" width="134" height="40" fill="none" stroke="var(--fam-wan)" stroke-width="1.6"/>
+            <text x="75" y="42" text-anchor="middle" fill="var(--fam-wan)" font-weight="600">URDF 상수</text>
+            <text x="75" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">SO-ARM100 공개 규격</text>
+            <line x1="144" y1="44" x2="188" y2="44" stroke="var(--fam-wan)" marker-end="url(#ar)"/>
+            <rect x="192" y="24" width="134" height="40" fill="none" stroke="var(--fam-wan)" stroke-width="1.6"/>
+            <text x="259" y="42" text-anchor="middle" fill="var(--fam-wan)" font-weight="600">순기구학 fk()</text>
+            <text x="259" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">관절각 → 3D 팔 자세</text>
+
+            <path d="M259,66 L259,86" stroke="var(--fam-wan)" marker-end="url(#ar)"/>
+            <text x="268" y="82" font-size="10" fill="var(--ink-3)">장면 선별에도 동일 특징 사용</text>
+
+            <line x1="328" y1="44" x2="372" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="376" y="24" width="164" height="40" fill="none" stroke="currentColor"/>
+            <text x="458" y="42" text-anchor="middle">ΔFK · 집게 특징</text>
+            <text x="458" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">AdaLN 84D + cross-attn 57열</text>
+            <line x1="542" y1="44" x2="586" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="590" y="16" width="160" height="56" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="670" y="34" text-anchor="middle">Wan2.2-TI2V-5B</text>
+            <text x="670" y="49" text-anchor="middle" font-size="10" fill="var(--ink-3)">가중치 동결</text>
+            <text x="670" y="64" text-anchor="middle" font-size="10" fill="var(--ink-3)">학습 대상 71.44M (어댑터+LoRA r16)</text>
+            <line x1="752" y1="44" x2="796" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="800" y="24" width="92" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="846" y="42" text-anchor="middle">step30000</text>
+            <text x="846" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">856.7 MB</text>
+
+            <line x1="8" y1="102" x2="892" y2="102" stroke="currentColor" opacity="0.25"/>
+
+            <text x="8" y="124" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">추론</text>
+            <rect x="8" y="134" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="72" y="152" text-anchor="middle">첫 프레임 + 액션</text>
+            <text x="72" y="166" text-anchor="middle" font-size="10" fill="var(--ink-3)">샘플 단위 독립</text>
+            <line x1="138" y1="154" x2="182" y2="154" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="186" y="134" width="164" height="40" fill="none" stroke="currentColor"/>
+            <text x="268" y="152" text-anchor="middle">동일 FK 특징 계산 → 샘플링</text>
+            <text x="268" y="166" text-anchor="middle" font-size="10" fill="var(--ink-3)">Flow Matching</text>
+            <line x1="352" y1="154" x2="396" y2="154" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="400" y="134" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="464" y="152" text-anchor="middle">216 mp4</text>
+            <text x="464" y="166" text-anchor="middle" font-size="10" fill="var(--ink-3)">후처리 없음</text>
+            <text x="548" y="150" font-size="11">추론 <tspan font-weight="600">16.8분</tspan> · VRAM 20.18 GB · 학습 36.0h</text>
+            <text x="548" y="167" font-size="10.5" fill="var(--ink-3)">규정 한도 대비 추론 28% · 학습 37.5%</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>그림 7.</b> team1 — 로봇 하드웨어 사전지식(URDF)이 장면 선별부터 추론까지 전 구간의 축이다. 빼면 동작하지 않는다.</figcaption>
+    </figure>
+
+    <dl class="spec">
+      <dt>백본</dt><dd>Wan2.2-TI2V-5B (동결) + FastWan2.2-TI2V-5B VAE · 둘 다 Apache-2.0</dd>
+      <dt>학습</dt><dd class="num-val">단일 런 0 → 30,000 step · Flow Matching 단독 · 학습 VRAM 12.0 GB · 36.0h (RTX 4090 실측)</dd>
+      <dt>조건</dt><dd>URDF 기반 ΔFK · 집게 힌지/축 · AdaLN 84D + cross-attn 57열</dd>
+      <dt>추론</dt><dd class="num-val">216 샘플 16.8분 · VRAM 20.18 GB · 후처리 없음 · 샘플 간 상호작용 없음</dd>
+      <dt>확인 필요</dt><dd>외부 URDF 사용 허용 여부 · <code>T_TIP</code> 적합 스크립트 미제출 · 로그상 실제 38,121 step</dd>
+    </dl>
+  </article>
+
+  <!-- ---------- team5 ---------- -->
+  <article class="team" id="team5" style="color: var(--fam-wan)">
+    <div class="team-head">
+      <span class="fam">Wan 2.1 / 2.2</span>
+      <h2 style="color: var(--ink)">team5 · 인비디하</h2>
+      <span class="team-id">Public 0.165847 · Private 0.203079</span>
+    </div>
+    <p class="thesis" style="color: var(--ink)">
+      팔이 어디에 있어야 하는지를 <em>그려서</em> 보여준다 — 사람이 클릭해 맞춘 골격을 조건 영상으로.
+    </p>
+    <ul class="keys">
+      <li><span class="k">무엇을</span><span class="v">
+        액션을 숫자가 아니라 <strong>픽셀로 넣는다</strong>. 사람이 프레임 위 관절을 클릭한 주석만으로
+        기구 파라미터와 카메라를 동시에 적합한 뒤, 액션 시퀀스를 <strong>골격 렌더</strong>로 바꿔 조건 영상으로 준다.
+        Wan2.1-VACE-14B가 원래 이런 구조 조건을 받는 모델이라 궁합이 맞는다.
+      </span></li>
+      <li><span class="k">왜 통했나</span><span class="v">
+        여기에 <strong>잠재 액션 판독기</strong>(<code>L_act</code>)가 생성 latent에서 액션을 되읽어 그 오차를 손실에 더한다.
+        추론은 <strong>구간별 스태킹</strong> — sid 0–64는 VACE 시드0, 65–153은 VACE 시드1, 154–215는 별도 TI2V-5B LoRA.
+      </span></li>
+      <li><span class="k">남은 문제</span><span class="v">
+        <strong>킷이 뱉는 Action 점수를 보고 저장 해상도와 후보를 정한 흔적</strong>이 스크립트 주석에 그대로 남아 있다
+        (<code>"320x512면 action 0.41→0.69"</code>). 검사보고서의 최중대 지적이며, 팀 스스로 완전 재현 불가를 기재했다.
+      </span></li>
+    </ul>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 900 244" role="img" aria-label="team5 파이프라인: 사람 클릭 주석으로 기구와 카메라를 적합해 골격 렌더 조건을 만들고 VACE-14B LoRA를 학습하며, 추론은 216 샘플을 세 구간으로 나눠 서로 다른 모델과 시드로 생성한 뒤 합친다">
+          <g font-size="11.5" fill="currentColor">
+            <text x="8" y="14" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">전처리 · 학습</text>
+            <rect x="8" y="24" width="140" height="40" fill="none" stroke="var(--fam-wan)" stroke-width="1.6"/>
+            <text x="78" y="42" text-anchor="middle" fill="var(--fam-wan)" font-weight="600">사람 클릭 주석</text>
+            <text x="78" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">assets/clicks</text>
+            <line x1="150" y1="44" x2="194" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="198" y="24" width="150" height="40" fill="none" stroke="currentColor"/>
+            <text x="273" y="42" text-anchor="middle">기구 + 카메라 동시 적합</text>
+            <text x="273" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">fk_clean · fk_v2 · 장면별 refit</text>
+            <line x1="350" y1="44" x2="394" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="398" y="24" width="140" height="40" fill="none" stroke="currentColor"/>
+            <text x="468" y="42" text-anchor="middle">골격 렌더 페어</text>
+            <text x="468" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">real / skel / q · 4,632쌍</text>
+            <line x1="540" y1="44" x2="584" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="588" y="16" width="170" height="56" fill="none" stroke="var(--fam-wan)" stroke-width="1.6"/>
+            <text x="673" y="34" text-anchor="middle" fill="var(--fam-wan)" font-weight="600">VACE-14B LoRA r32</text>
+            <text x="673" y="49" text-anchor="middle" font-size="10" fill="var(--ink-3)">12k(lr 5e-5) + 4k(lr 2e-5)</text>
+            <text x="673" y="64" text-anchor="middle" font-size="10" fill="var(--ink-3)">+ L_act 잠재 액션 판독기</text>
+            <text x="772" y="40" font-size="10.5" fill="var(--ink-3)">학습 합계</text>
+            <text x="772" y="56" font-size="10.5" fill="var(--ink-3)">약 1.5일</text>
+
+            <line x1="8" y1="92" x2="892" y2="92" stroke="currentColor" opacity="0.25"/>
+
+            <text x="8" y="114" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">추론 — 구간별 스태킹</text>
+            <rect x="8" y="124" width="200" height="34" fill="none" stroke="currentColor"/>
+            <text x="20" y="145" font-size="11.5">sid 0–64 · VACE · seed 0</text>
+            <rect x="8" y="164" width="200" height="34" fill="none" stroke="currentColor"/>
+            <text x="20" y="185" font-size="11.5">sid 65–153 · VACE · seed 1</text>
+            <rect x="8" y="204" width="200" height="34" fill="none" stroke="currentColor"/>
+            <text x="20" y="225" font-size="11.5">sid 154–215 · dtn TI2V-5B</text>
+
+            <path d="M210,141 L252,162" stroke="currentColor" marker-end="url(#ar)"/>
+            <path d="M210,181 L252,174" stroke="currentColor" marker-end="url(#ar)"/>
+            <path d="M210,221 L252,186" stroke="currentColor" marker-end="url(#ar)"/>
+
+            <rect x="256" y="152" width="164" height="42" fill="none" stroke="var(--warn)" stroke-width="1.4"/>
+            <text x="338" y="170" text-anchor="middle" fill="var(--warn)" font-weight="600">후처리 (0–153)</text>
+            <text x="338" y="186" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">f0 교체 · 배경 오프셋 · comp</text>
+
+            <line x1="422" y1="173" x2="466" y2="173" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="470" y="153" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="534" y="178" text-anchor="middle">216 mp4 조립</text>
+
+            <text x="614" y="162" font-size="10.5" fill="var(--warn)">쟁점 — 킷이 뱉는 Action 점수를 보고</text>
+            <text x="614" y="178" font-size="10.5" fill="var(--warn)">저장 규격·후보를 정한 흔적이</text>
+            <text x="614" y="194" font-size="10.5" fill="var(--warn)">스크립트에 그대로 남음</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>그림 8.</b> team5 — 조건을 픽셀 공간에 그려 넣는 접근과, 샘플 구간마다 생성원을 바꾸는 스태킹이 함께 들어갔다.</figcaption>
+    </figure>
+
+    <dl class="spec">
+      <dt>백본</dt><dd>Wan2.1-VACE-14B (주력) + Wan2.2-TI2V-5B (sid 154–215) · 둘 다 Apache-2.0</dd>
+      <dt>전처리</dt><dd>클릭 주석 → 기구·카메라 동시 적합 → 골격 렌더 · 학습 페어 4,632쌍</dd>
+      <dt>학습</dt><dd class="num-val">VACE LoRA r32 12k + 4k 연장 (≈21.7h) · dtn FiLM LoRA 750 step · 합계 약 1.5일</dd>
+      <dt>추론</dt><dd class="num-val">구간별 모델·시드 스택 · 합계 약 50분 (0–153 재생성 리허설 35분 57초)</dd>
+      <dt>가중치</dt><dd><code>lora14b_7p_16k_final.safetensors</code> · <code>latent_readout.pt</code> · <code>dtnM2/</code></dd>
+    </dl>
+  </article>
+
+  <!-- ---------- team4 ---------- -->
+  <article class="team" id="team4" style="color: var(--fam-cosmos)">
+    <div class="team-head">
+      <span class="fam">Cosmos 2.5</span>
+      <h2 style="color: var(--ink)">team4 · 최후의 18시간</h2>
+      <span class="team-id">Public —</span>
+    </div>
+    <p class="thesis" style="color: var(--ink)">
+      생성한 영상에서 액션이 <em>되읽혀야</em> 한다 — 역동역학 모델을 심판으로 세운다.
+    </p>
+    <ul class="keys">
+      <li><span class="k">무엇을</span><span class="v">
+        출발점(Cosmos-Predict2.5-2B)이 이미 action-conditioned이라 “액션을 어떻게 넣을까”는 물려받고,
+        <strong>“액션대로 움직였는지 어떻게 검사할까”</strong>에 예산을 썼다.
+        Stage 1 LoRA 학습 → 그 latent 위에서 <strong>잠재 IDM</strong>(연속 latent에서 액션을 역추정하는 모델)을 25k step 별도 학습
+        → Stage 2에서 IDM을 보조 신호로 붙여 다시 25k step.
+      </span></li>
+      <li><span class="k">왜 통했나</span><span class="v">
+        마무리는 <strong>체크포인트 수프</strong> — Stage 2 마지막 네 지점을 평균해 단일 지점 선택의 분산을 줄였다.
+        후처리는 액션 한 축만 본다: shoulder-lift 평균이 45°를 넘는 샘플에만 배경 앵커.
+      </span></li>
+      <li><span class="k">남은 문제</span><span class="v">
+        제출 영상을 만든 스크립트(<code>own_bon.py</code>)가 패키지에 없고, IDM·soup 단계의 stdout 로그도 미보존이다.
+        다만 Private 재현 오차가 <strong>0.122%</strong>로 나와 재현 성공 판정을 받았다.
+      </span></li>
+    </ul>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 900 200" role="img" aria-label="team4 파이프라인: Cosmos 2B에 LoRA r32로 Stage1 학습 후 latent IDM을 따로 학습해 Stage2 보조신호로 쓰고 마지막 네 체크포인트를 평균, 추론은 Flow UniPC 30스텝 뒤 shoulder-lift 45도 초과 샘플에만 배경 앵커">
+          <g font-size="11.5" fill="currentColor">
+            <text x="8" y="14" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">학습</text>
+            <rect x="8" y="24" width="130" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="73" y="42" text-anchor="middle" font-size="11">Cosmos-Predict2.5-2B</text>
+            <text x="73" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">action-cond 공개 weight</text>
+            <line x1="140" y1="44" x2="180" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="184" y="24" width="132" height="40" fill="none" stroke="currentColor"/>
+            <text x="250" y="42" text-anchor="middle">Stage 1 · LoRA r32</text>
+            <text x="250" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">stride 8 · 104,368 win · 4,375</text>
+
+            <path d="M250,66 L250,92 L338,92" fill="none" stroke="var(--fam-cosmos)" stroke-width="1.3" marker-end="url(#ar)"/>
+            <rect x="342" y="74" width="150" height="36" fill="none" stroke="var(--fam-cosmos)" stroke-width="1.6"/>
+            <text x="417" y="90" text-anchor="middle" fill="var(--fam-cosmos)" font-weight="600">잠재 IDM 25,000 step</text>
+            <text x="417" y="104" text-anchor="middle" font-size="10" fill="var(--ink-3)">latent → 액션 역추정</text>
+
+            <line x1="318" y1="44" x2="358" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="362" y="24" width="150" height="40" fill="none" stroke="currentColor"/>
+            <text x="437" y="42" text-anchor="middle">Stage 2 · stride 4</text>
+            <text x="437" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">203,165 win · 25,000 step</text>
+            <path d="M437,74 L437,64" fill="none" stroke="var(--fam-cosmos)" stroke-width="1.3" marker-end="url(#ar)"/>
+            <text x="452" y="72" font-size="9.5" fill="var(--fam-cosmos)">AUX 0.3 / 0.3</text>
+
+            <line x1="514" y1="44" x2="554" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="558" y="24" width="140" height="40" fill="none" stroke="currentColor"/>
+            <text x="628" y="42" text-anchor="middle">checkpoint soup</text>
+            <text x="628" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">마지막 4지점 평균</text>
+            <line x1="700" y1="44" x2="740" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="744" y="24" width="148" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="818" y="42" text-anchor="middle" font-size="11">v014_stride4_200k_soup</text>
+            <text x="818" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">학습 파라미터 113.4M</text>
+
+            <line x1="8" y1="126" x2="892" y2="126" stroke="currentColor" opacity="0.25"/>
+
+            <text x="8" y="148" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">추론</text>
+            <rect x="8" y="156" width="150" height="36" fill="none" stroke="currentColor"/>
+            <text x="83" y="172" text-anchor="middle">Flow UniPC 30 step</text>
+            <text x="83" y="186" text-anchor="middle" font-size="10" fill="var(--ink-3)">shift 5 · seed 7 · AG 0.6</text>
+            <line x1="160" y1="174" x2="200" y2="174" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="204" y="156" width="196" height="36" fill="none" stroke="var(--warn)" stroke-width="1.4"/>
+            <text x="302" y="172" text-anchor="middle" fill="var(--warn)" font-weight="600">shoulder-lift 평균 &gt; 45° ?</text>
+            <text x="302" y="186" text-anchor="middle" font-size="10" fill="var(--ink-3)">제공 액션만으로 분기</text>
+            <path d="M402,166 L440,166" stroke="var(--warn)" marker-end="url(#ar)"/>
+            <text x="448" y="170" font-size="11" fill="var(--warn)">예 → 배경 앵커 (마스크 밖을 첫 프레임으로 복원)</text>
+            <path d="M402,186 L440,186" stroke="currentColor" marker-end="url(#ar)"/>
+            <text x="448" y="190" font-size="11">아니오 → 생성 mp4 그대로</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>그림 9.</b> team4 — IDM을 “액션 재현도 심판”으로 세운 것이 핵심이고, 수프로 선택 분산을 줄였다.</figcaption>
+    </figure>
+
+    <dl class="spec">
+      <dt>백본</dt><dd>NVIDIA Cosmos-Predict2.5-2B action-cond (고정 commit) · NVIDIA Open Model License</dd>
+      <dt>학습</dt><dd class="num-val">LoRA r32 (28 DiT block self/cross-attn + MLP) + 6D action embedder · 113.4M · seed 20260807 / sampler 1234</dd>
+      <dt>보조 신호</dt><dd>train latent 전용 잠재 IDM (batch 64 · lr 3e-4 · EMA 0.999 · 25,000 step)</dd>
+      <dt>추론</dt><dd class="num-val">Flow UniPC 30 step · shift 5 · seed 7 · auto-guidance 0.6 · LoRA scale 1</dd>
+      <dt>재현</dt><dd>Private 재현 오차 0.122% — 세 성분이 고르게 흩어져 무작위 재생성 차이로 판단</dd>
+    </dl>
+  </article>
+
+  <!-- ---------- team8 ---------- -->
+  <article class="team" id="team8" style="color: var(--fam-cosmos)">
+    <div class="team-head">
+      <span class="fam">Cosmos 2.5</span>
+      <h2 style="color: var(--ink)">team8 · GoldLi</h2>
+      <span class="team-id">Public 0.196397</span>
+    </div>
+    <p class="thesis" style="color: var(--ink)">
+      노이즈부터 움직이게 한다 — 광류로 미리 뒤튼 노이즈를 주어 시간 일관성을 확보한다.
+    </p>
+    <ul class="keys">
+      <li><span class="k">무엇을</span><span class="v">
+        같은 Cosmos 2B에서 출발하지만 접근이 반대쪽이다. team4가 <em>출력</em>을 검사한다면,
+        이 팀은 <strong>입력 노이즈를 손본다</strong>. 프레임 간 광류로 노이즈를 미리 warp해 두면
+        프레임마다 독립적인 가우시안 노이즈가 만드는 깜빡임이 줄어든다.
+      </span></li>
+      <li><span class="k">왜 통했나</span><span class="v">
+        flow cache 생성 → 노이즈 사전계산 → warped 10k step → 액션 cross-attn 어댑터 10k step으로 이어지는
+        <strong>8팀 중 가장 긴 학습 체인</strong>(누적 120,000 update ≈ 80시간)을 돌렸다.
+        다만 최종 제출본은 <strong>어댑터의 추론 가중치를 <code>0.0</code>으로 두었다</strong> — 학습해 놓고 껐다.
+      </span></li>
+      <li><span class="k">남은 문제</span><span class="v">
+        39라운드 제출 이력과 라운드별 provenance·MANIFEST 해시까지 남겼는데,
+        정작 <strong>weight가 남지 않았다</strong>(아래 참조). 재현은 전체 재학습을 전제로 한다.
+      </span></li>
+    </ul>
+
+    <div class="note">
+      <b>체크포인트 소실.</b> 대회 종료 다음 날인 2026-08-21, 공용 GPU 서버 디스크 사용률 81% 상황에서 수행한 정리 작업으로
+      이 팀의 <strong>학습 체크포인트·로그·생성 영상·캐시가 영구 삭제</strong>됐다. 소스·설정·제출 CSV·provenance는 보존됐다.
+    </div>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 900 196" role="img" aria-label="team8 파이프라인: Cosmos 2B에서 production 30k, 60k, 120k로 이어지는 LoRA 학습 후 flow cache와 사전계산 노이즈로 warped 10k, 액션 cross-attention 어댑터 10k를 학습하고, 추론은 20스텝 FlowUniPC에 static anchor 후처리, 어댑터 가중치는 0">
+          <g font-size="11.5" fill="currentColor">
+            <text x="8" y="14" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">학습 체인</text>
+            <rect x="8" y="24" width="112" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="64" y="42" text-anchor="middle">Cosmos 2B</text>
+            <text x="64" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">LoRA r16</text>
+            <line x1="122" y1="44" x2="158" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="162" y="24" width="150" height="40" fill="none" stroke="currentColor"/>
+            <text x="237" y="42" text-anchor="middle" font-size="11">production 30k→60k→120k</text>
+            <text x="237" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">iter 100k 선택</text>
+            <line x1="314" y1="44" x2="350" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="354" y="24" width="140" height="40" fill="none" stroke="var(--fam-cosmos)" stroke-width="1.6"/>
+            <text x="424" y="42" text-anchor="middle" fill="var(--fam-cosmos)" font-weight="600" font-size="11">flow cache → warped 10k</text>
+            <text x="424" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">광류로 노이즈 사전 왜곡</text>
+            <line x1="496" y1="44" x2="532" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="536" y="24" width="140" height="40" fill="none" stroke="currentColor"/>
+            <text x="606" y="42" text-anchor="middle">xattn 어댑터 10k</text>
+            <text x="606" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">액션 cross-attention</text>
+            <line x1="678" y1="44" x2="714" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="718" y="24" width="174" height="40" fill="var(--surface-2)" stroke="currentColor" stroke-dasharray="4 3"/>
+            <text x="805" y="42" text-anchor="middle">Round 22 weight</text>
+            <text x="805" y="56" text-anchor="middle" font-size="10" fill="var(--warn)">2026-08-21 서버 정리로 삭제</text>
+
+            <text x="8" y="84" font-size="10.5" fill="var(--ink-3)">누적 120,000 update · 2.4 s/update 기준 약 80시간</text>
+            <line x1="8" y1="98" x2="892" y2="98" stroke="currentColor" opacity="0.25"/>
+
+            <text x="8" y="120" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">추론</text>
+            <rect x="8" y="130" width="150" height="40" fill="none" stroke="currentColor"/>
+            <text x="83" y="148" text-anchor="middle">FlowUniPC 20 step</text>
+            <text x="83" y="162" text-anchor="middle" font-size="10" fill="var(--ink-3)">seed 20260809</text>
+            <line x1="160" y1="150" x2="200" y2="150" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="204" y="130" width="164" height="40" fill="none" stroke="var(--warn)" stroke-width="1.4"/>
+            <text x="286" y="148" text-anchor="middle" fill="var(--warn)" font-weight="600">static_anchor_v1</text>
+            <text x="286" y="162" text-anchor="middle" font-size="10" fill="var(--ink-3)">정적 영역 고정</text>
+            <line x1="370" y1="150" x2="410" y2="150" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="414" y="130" width="128" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="478" y="148" text-anchor="middle">216 mp4</text>
+            <text x="478" y="162" text-anchor="middle" font-size="10" fill="var(--ink-3)">6.399 s/sample</text>
+            <text x="558" y="146" font-size="11">전체 추론 <tspan font-weight="600">1,382초 (약 23분)</tspan> · A6000 1장</text>
+            <text x="558" y="163" font-size="10.5" fill="var(--warn)">어댑터 추론 가중치 a00 = 0.0 (학습만 하고 껐음)</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>그림 10.</b> team8 — 학습 체인이 가장 길지만, 최종 구성에서는 마지막 어댑터가 꺼져 있다.</figcaption>
+    </figure>
+
+    <dl class="spec">
+      <dt>백본</dt><dd>Cosmos-Predict2.5-2B action-cond (rev·SHA-256 명기) · 코드 Apache-2.0 / weight NVIDIA OML</dd>
+      <dt>LoRA</dt><dd class="num-val">rank 16 / alpha 16 · q,k,v,output_proj,mlp.layer1,mlp.layer2 · AdamW 5e-5 · resolution 256</dd>
+      <dt>핵심 기법</dt><dd>warped noise (광류 기반 노이즈 사전 왜곡) + 액션 cross-attention 어댑터</dd>
+      <dt>추론</dt><dd class="num-val">20-step FlowUniPC · static_anchor_v1 · 1,382.08초 / 216 샘플 (A6000 1장)</dd>
+      <dt>문서화</dt><dd>39라운드 제출 이력 · 라운드별 provenance · MANIFEST 해시 · 외부 asset 출처 대장</dd>
+    </dl>
+  </article>
+
+  <!-- ---------- team2 ---------- -->
+  <article class="team" id="team2" style="color: var(--fam-svd)">
+    <div class="team-head">
+      <span class="fam">SVD · Ctrl-World</span>
+      <h2 style="color: var(--ink)">team2 · mainunit</h2>
+      <span class="team-id">Public 0.165933</span>
+    </div>
+    <p class="thesis" style="color: var(--ink)">
+      액션이 영상을 정말로 바꾸게 하려면, <em>틀린 액션과 구별하도록</em> 가르쳐야 한다.
+    </p>
+    <ul class="keys">
+      <li><span class="k">무엇을</span><span class="v">
+        유일하게 SVD 계열 월드모델(Ctrl-World)을 가져왔다. Stage A에서 attention LoRA r=128,
+        18채널 액션 헤드, depthwise-conv 시간 혼합기, <strong>zero-init alpha gate</strong>를 한꺼번에 주입해 16k step 학습.
+        alpha gate 덕에 주입 직후엔 원본 동작이 유지되고 새 경로가 서서히 열린다.
+      </span></li>
+      <li><span class="k">왜 통했나</span><span class="v">
+        Stage B·C가 차별점이다. self-attention LoRA를 <strong>얼린 채</strong> cross-attention과 액션 경로 269텐서(30.7M)만
+        <strong>액션 대조 힌지</strong>로 미세조정한다 — 맞는 액션일 때의 손실이 틀린 액션보다 마진 이상 낮아지도록 강제해,
+        <strong>조건 무시(condition collapse)를 정면으로 겨냥</strong>한다.
+      </span></li>
+      <li><span class="k">남은 문제</span><span class="v">
+        <strong>부모 체크포인트를 리더보드 점수로 골랐다</strong>는 주석, 과거 학습 루프의 킷 채점 되먹임 자백,
+        216개 추론이 난수 흐름을 공유해 샘플 독립성이 깨지는 구조 — 검사보고서가 세 건을 중대 사안으로 올렸다.
+      </span></li>
+    </ul>
+
+    <figure>
+      <div class="figbox">
+        <svg viewBox="0 0 900 196" role="img" aria-label="team2 파이프라인: Ctrl-World 공개 체크포인트에 LoRA r128과 액션 헤드, 시간 혼합기, alpha gate를 주입해 16k step 학습하고, self-attn LoRA를 얼린 채 액션 대조 힌지로 2k와 200 step 미세조정, 추론 후 frame-0 하드마스크 적용">
+          <g font-size="11.5" fill="currentColor">
+            <text x="8" y="14" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">학습 — 3 stage</text>
+            <rect x="8" y="24" width="122" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="69" y="42" text-anchor="middle">Ctrl-World</text>
+            <text x="69" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">SVD img2vid 기반</text>
+            <line x1="132" y1="44" x2="170" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="174" y="16" width="182" height="56" fill="none" stroke="currentColor"/>
+            <text x="265" y="34" text-anchor="middle" font-weight="600">stage A · 16,000 step</text>
+            <text x="265" y="49" text-anchor="middle" font-size="10" fill="var(--ink-3)">LoRA r128 · 18ch 액션 헤드</text>
+            <text x="265" y="63" text-anchor="middle" font-size="10" fill="var(--ink-3)">시간 혼합기 · zero-init alpha gate</text>
+            <line x1="358" y1="44" x2="396" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <text x="377" y="36" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">동결</text>
+            <rect x="400" y="16" width="182" height="56" fill="none" stroke="var(--fam-svd)" stroke-width="1.6"/>
+            <text x="491" y="34" text-anchor="middle" fill="var(--fam-svd)" font-weight="600">stage B · 액션 대조 힌지</text>
+            <text x="491" y="49" text-anchor="middle" font-size="10" fill="var(--ink-3)">self-attn LoRA 동결</text>
+            <text x="491" y="63" text-anchor="middle" font-size="10" fill="var(--ink-3)">cross-attn + 액션 269텐서(30.7M) · 2,000</text>
+            <line x1="584" y1="44" x2="622" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="626" y="24" width="130" height="40" fill="none" stroke="var(--fam-svd)" stroke-width="1.6"/>
+            <text x="691" y="42" text-anchor="middle" fill="var(--fam-svd)" font-weight="600">stage C · step 200</text>
+            <text x="691" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">같은 대조학습 1회 더</text>
+            <line x1="758" y1="44" x2="796" y2="44" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="800" y="24" width="92" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="846" y="42" text-anchor="middle">제출 weight</text>
+            <text x="846" y="56" text-anchor="middle" font-size="10" fill="var(--ink-3)">450 MiB</text>
+
+            <line x1="8" y1="92" x2="892" y2="92" stroke="currentColor" opacity="0.25"/>
+
+            <text x="8" y="114" font-size="10" fill="var(--ink-3)" letter-spacing="1.2">추론</text>
+            <rect x="8" y="124" width="164" height="40" fill="none" stroke="currentColor"/>
+            <text x="90" y="142" text-anchor="middle">45 step · guidance 1.0</text>
+            <text x="90" y="156" text-anchor="middle" font-size="10" fill="var(--ink-3)">seed 0 · 512×320 · fps 6</text>
+            <line x1="174" y1="144" x2="212" y2="144" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="216" y="124" width="176" height="40" fill="none" stroke="var(--warn)" stroke-width="1.4"/>
+            <text x="304" y="142" text-anchor="middle" fill="var(--warn)" font-weight="600">frame-0 하드마스크</text>
+            <text x="304" y="156" text-anchor="middle" font-size="10" fill="var(--ink-3)">threshold 12 · dilate 4</text>
+            <line x1="394" y1="144" x2="432" y2="144" stroke="currentColor" marker-end="url(#ar)"/>
+            <rect x="436" y="124" width="120" height="40" fill="var(--surface-2)" stroke="currentColor"/>
+            <text x="496" y="148" text-anchor="middle">216 mp4</text>
+            <text x="576" y="140" font-size="10.5" fill="var(--warn)">쟁점 — 부모 체크포인트를 리더보드 점수로 선택,</text>
+            <text x="576" y="156" font-size="10.5" fill="var(--warn)">216개 추론이 난수 흐름을 공유(샘플 독립성)</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><b>그림 11.</b> team2 — 조건 무시 문제를 대조 학습으로 공략한 유일한 팀. 전처리·학습·추론이 4,486줄 단일 파일에 서브커맨드로 들어 있다.</figcaption>
+    </figure>
+
+    <dl class="spec">
+      <dt>백본</dt><dd>Ctrl-World (HF <code>yjguo/Ctrl-World</code>) + SVD img2vid + CLIP ViT-B/32</dd>
+      <dt>주입 모듈</dt><dd>attention LoRA r128 · 18채널 액션 헤드 · depthwise-conv 시간 혼합기 · zero-init alpha gate</dd>
+      <dt>학습</dt><dd class="num-val">A 16,000 → B 2,000(대조) → C 200(대조) step · 유효 배치 16을 <code>16/WORLD_SIZE</code>로 유도해 단일 GPU 동작</dd>
+      <dt>데이터 분할</dt><dd>3계층 group-safe — fit 2,086 / sealed 300 / strict_dev 303 · margin 게이트 검증 명령 포함</dd>
+      <dt>재현 품질</dt><dd>모든 argparse 기본값 = 제출 런 값 · 경로는 <code>__file__</code> 기준 상대경로 · 동봉물 sha256 명기</dd>
+    </dl>
+  </article>
+
+  <!-- ---------- team6 ---------- -->
+  <article class="team" id="team6" style="color: var(--ink-3)">
+    <div class="team-head">
+      <span class="fam">—</span>
+      <h2 style="color: var(--ink)">team6</h2>
+      <span class="team-id">제출물 없음</span>
+    </div>
+    <p style="color: var(--ink-2); max-width: var(--measure); margin-top: 12px;">
+      <code>grad/team6/</code> 디렉터리가 비어 있어 분석 대상이 없다.
+    </p>
+  </article>
+</section>
+
+<!-- ======================= 5. 수렴 ======================= -->
+<section class="sec" id="convergence">
+  <span class="num">05 — 교차 관찰</span>
+  <h2>서로 다른 백본에서 출발해 같은 곳에 도착했다</h2>
+  <div class="prose">
+    <p class="lede">
+      백본도 조건 주입도 제각각이지만, 추론 마지막 단계에서는 거의 모두 같은 처방을 썼다 —
+      <strong>움직이지 않아야 할 픽셀을 첫 프레임으로 되돌리는 것.</strong>
+    </p>
+    <p>
+      이유는 그림 1의 채점식에 있다. DINO·Video 성분(합계 0.6)은 프레임 특징의 코사인 거리인데,
+      생성 모델은 배경·조명·질감을 미세하게 흔드는 경향이 있고 그 드리프트가 거리로 곧장 잡힌다.
+      팔만 정확히 움직이고 <em>나머지는 첫 프레임 그대로</em>인 영상이 지표상 가장 안전하다.
+    </p>
+  </div>
+
+  <figure>
+    <div class="figbox">
+      <svg viewBox="0 0 900 236" role="img" aria-label="여섯 팀의 정적 영역 복원 후처리를 강도 순으로 비교. team3은 확산 합성 단계 안에서 프레임별 마스크, team2와 team8은 프레임0 하드마스크, team4는 액션 조건부 배경 앵커, team5는 첫 프레임 교체와 배경 오프셋, team10은 샘플 전체를 정지영상으로 대체">
+        <g font-size="11.5" fill="currentColor">
+          <text x="8" y="30" font-size="11.5" fill="var(--ink-3)">후처리 없이 모델 출력을 그대로 제출한 팀 —</text>
+          <text x="272" y="30" font-size="12" font-weight="600">team1 · team7</text>
+          <text x="382" y="30" font-size="11.5" fill="var(--ink-3)">(team7은 대신 지각손실로 학습 안에서 해결)</text>
+
+          <text x="8" y="58" font-size="11.5" fill="var(--ink-3)">공통 분기 근거 — 여섯 팀 모두 <tspan fill="currentColor">제공된 입력 액션만</tspan> 썼다고 명시. 킷 출력이나 리더보드 점수를 쓰면 규정 위반이 되기 때문.</text>
+
+          <line x1="60" y1="200" x2="850" y2="200" stroke="currentColor" stroke-width="1.2" marker-end="url(#ar)"/>
+          <text x="60" y="224" font-size="10.5" fill="var(--ink-3)">국소 마스크</text>
+          <text x="850" y="224" font-size="10.5" fill="var(--ink-3)" text-anchor="end">샘플 통째 교체</text>
+
+          <line x1="120" y1="200" x2="120" y2="188" stroke="currentColor"/>
+          <rect x="46" y="122" width="148" height="60" fill="none" stroke="currentColor"/>
+          <text x="120" y="142" text-anchor="middle" font-weight="600">team3</text>
+          <text x="120" y="158" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">확산 합성 단계 내부</text>
+          <text x="120" y="172" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">프레임별 모션 마스크</text>
+
+          <line x1="300" y1="200" x2="300" y2="188" stroke="currentColor"/>
+          <rect x="226" y="122" width="148" height="60" fill="none" stroke="currentColor"/>
+          <text x="300" y="142" text-anchor="middle" font-weight="600">team2 · team8</text>
+          <text x="300" y="158" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">frame-0 하드마스크</text>
+          <text x="300" y="172" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">static_anchor · 전 샘플</text>
+
+          <line x1="480" y1="200" x2="480" y2="188" stroke="currentColor"/>
+          <rect x="406" y="122" width="148" height="60" fill="none" stroke="currentColor"/>
+          <text x="480" y="142" text-anchor="middle" font-weight="600">team4</text>
+          <text x="480" y="158" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">배경 앵커</text>
+          <text x="480" y="172" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">액션 45° 초과 샘플만</text>
+
+          <line x1="660" y1="200" x2="660" y2="188" stroke="currentColor"/>
+          <rect x="586" y="122" width="148" height="60" fill="none" stroke="currentColor"/>
+          <text x="660" y="142" text-anchor="middle" font-weight="600">team5</text>
+          <text x="660" y="158" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">f0 교체 + 배경 오프셋</text>
+          <text x="660" y="172" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">sid 0–153 구간</text>
+
+          <line x1="820" y1="200" x2="820" y2="188" stroke="var(--warn)"/>
+          <rect x="746" y="114" width="148" height="68" fill="none" stroke="var(--warn)" stroke-width="1.6"/>
+          <text x="820" y="134" text-anchor="middle" font-weight="600" fill="var(--warn)">team10</text>
+          <text x="820" y="150" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">생성 영상을 버리고</text>
+          <text x="820" y="164" text-anchor="middle" font-size="10.5" fill="var(--ink-3)">정지영상으로 대체</text>
+          <text x="820" y="178" text-anchor="middle" font-size="10.5" fill="var(--warn)">216 중 43편</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>
+      <b>그림 12.</b> 정적 영역 복원 처방의 강도 스펙트럼. 왼쪽으로 갈수록 생성물을 살리고, 오른쪽으로 갈수록 입력 이미지로 되돌린다.
+    </figcaption>
+  </figure>
+
+  <h3>기록 상태 — 아이디어와 별개의 문제</h3>
+  <div class="prose">
+    <p>
+      설계의 질과 무관하게, <strong>여덟 팀 중 다섯 팀이 재현에 필요한 무언가를 잃었거나 내지 않았다.</strong>
+      설계를 읽어낼 수는 있어도 <em>그 설계가 그 점수를 냈다</em>는 것까지 확인하려면 각 팀에 추가 자료를 요청해야 한다.
+    </p>
+    <ul class="plain">
+      <li><strong>team8</strong> — 학습 체크포인트·로그·영상·캐시 전량 삭제 (서버 정리)</li>
+      <li><strong>team10</strong> — 학습 로그 유실, 모션 손실 v2 코드는 사양 기반 재작성본</li>
+      <li><strong>team7</strong> — 체크포인트 선택에 쓴 자체 채점기 <code>local_scorer.py</code> 미제출</li>
+      <li><strong>team4</strong> — 제출 영상 생성 스크립트 미포함, IDM·soup 단계 로그 미보존</li>
+      <li><strong>team3</strong> — 예측기 조상 체크포인트의 계보 불명</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <b>이 문서의 범위.</b> 제출 README·config·소스코드와 기존 검사보고서를 읽어 <strong>설계 아이디어만</strong> 정리했다.
+    규정 위반 여부의 판단이 아니며, 본문에 “쟁점”으로 표시한 항목은 기존 검사보고서의 지적을 맥락으로 옮겨 적은 것이다.
+    코드는 읽기만 했고 실행하지 않았으며, 제출물은 수정하지 않았다.
+  </div>
+</section>
+
+</div>

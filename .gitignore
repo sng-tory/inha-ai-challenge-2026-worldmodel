@@ -1,0 +1,16 @@
+# 대용량 산출물 / 재생성 가능 항목
+baseline/checkpoints/
+baseline/outputs/
+submission_kit/input_videos/*.mp4
+submission_kit/submission_features.csv
+dacon_score/outputs/
+data/train/*/
+!data/train/*.json
+!data/train/*.jsonl
+data/eval/images/
+data/eval/actions/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+.envs/
